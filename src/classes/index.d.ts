@@ -1,10 +1,19 @@
 
+import './basic-player-movement-controller';
 import './camera';
+import './dummy-input-controller';
 import './entity';
+import './input-controller';
 import './music';
 import './math';
 import './network';
+import './noclip-player-movement-controller';
 import './particle-group';
+import './player-movement-controller';
 import './physic';
 import './player';
+import './scoreboard';
+import './sound';
+import './sprite';
 import './texture';
+import './tilemap';
