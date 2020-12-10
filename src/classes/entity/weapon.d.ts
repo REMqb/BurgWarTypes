@@ -1,5 +1,21 @@
 declare type Weapon<Properties extends Property<string> = any, Structure = any> = Element<Properties, Structure> & {
+    /*
+     * Shared
+     */
+    GetOwnerEntity(): Entity;
+    SetNextTriggerTime(nextTriggerTime: number): void;
 
+    /*
+     * Server
+     */
+    IsPlayingAnimation(): boolean;
+    PlayAnim(animationName: string): void;
+    Shoot(startPos: vec2, direction: vec2, damage: number): void;
+
+    /*
+     * Client
+     */
+    Shoot(startPos: vec2, direction: vec2, damage: number): void;
 }
 
 declare type WeaponTemplate<WeaponT extends Weapon> = ElementTemplate<WeaponT> & {

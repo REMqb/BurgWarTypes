@@ -122,24 +122,72 @@ declare global {
     function ScriptedEntity<
         Names extends string,
         S extends object,
-        T extends ScriptedEntityParams<Names, S>,
-        Properties extends Property<Names> = T["Properties"][number],
-        Structure = T["TsStructure"] extends object ? T["TsStructure"] : any
+        BaseNames extends string,
+        BaseS extends object,
+        T extends ScriptedEntityParams<Names, S, BaseNames, BaseS>,
+        SelfProperties extends Property<Names> = T["Properties"][number],
+        Properties extends Property<string> = InferProperties<Names, SelfProperties, BaseNames, T["TsBase"]>,
+        SelfStructure extends object = T["TsStructure"] extends object ? T["TsStructure"] : any,
+        Structure extends object = InferStructure<SelfStructure, T["TsBase"]>,
     >(params: T): EntityTemplate<Entity<Properties, Structure>>;
 
-    interface ScriptedEntityParams<Name extends string = string, Structure extends object = any> {
+    type InferProperties<
+        Names extends string,
+        SelfP extends Property<Names>,
+        BaseNames extends string,
+        T extends EntityTemplate<Entity<Property<BaseNames>, any>> | undefined
+    > = T extends EntityTemplate<Entity<infer BaseP, infer U>> ? BaseP | SelfP : SelfP;
+
+    type InferStructure<
+        SelfStructure extends object,
+        T extends EntityTemplate<Entity<any, any>> | undefined
+    > = T extends EntityTemplate<Entity<infer P, infer BaseStructure>> ? BaseStructure & SelfStructure : SelfStructure;
+
+    interface ScriptedEntityParams<
+        Names extends string = string,
+        Structure extends object = any,
+        BaseNames extends string = string,
+        BaseStructure extends object = any
+    > {
         /**
          * Dummy parameter that allow to type properties on self in callbacks, if not used you can
          * Use any name but the type will always be any, if you want to allow any properties while typing some,
          * add a `[key: sting]: any;` declaration to your type
          */
         TsStructure?: Structure,
+        TsBase?: EntityTemplate<Entity<Property<BaseNames>, BaseStructure>>,
+        Base?: string,
         IsNetworked: boolean;
         MaxHealth: number;
         /**
          * List of the properties of the template
          */
-        Properties: Array<Property<Name>>;
+        Properties: Array<Property<Names>>;
     }
+
+    /**
+     * Helper fake function that allow taging an interface literal with a structure type, it won't exists in the resulting lua file
+     *
+     * Example code:
+     * ```ts
+     * cont foo = {
+     *    TsStructure: TsStructure<{baz: boolean}>(),
+     *    bar: 42
+     * };
+     * ```
+     */
+    function TsStructure<T>(): T;
+    /**
+     * Helper fake function that allow taging an interface literal with a base type, it won't exists in the resulting lua file
+     *
+     * Example code:
+     * ```ts
+     * cont foo = {
+     *    TsBase: TsBase<BaseType>(),
+     *    bar: 42
+     * };
+     * ```
+     */
+    function TsBase<T>(): T;
 
 }

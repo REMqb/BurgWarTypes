@@ -1,12 +1,45 @@
-interface Structure<T> {}
-
-declare function Structure<T>(): T;
-
 declare type Element<Properties extends Property<string> = any, Structure = unknown> = {
     [K in keyof Structure]: Structure[K];
 } & {
 
+    /*
+     * Shared
+     */
+    DeleteOnRemove(other: Element): void;
+    Disable(): void;
+    Enable(): void;
+    GetDirection(): vec2;
+    GetPosition(): vec2;
+    GetRotation(): number;
+    GetScale(): vec2;
+    IsEnabled(): boolean;
+    IsLookingRight(): boolean;
+    IsValid(): boolean;
+    SetLifeTime(lifetime: number): void;
+    SetScale(scale: number): void;
+    ToLocalPosition(globalPosition: vec2): vec2;
+    ToGlobalPosition(localPosition: vec2): vec2;
+    Trigger(event: unknown, ...args: unknown[]): vec2;
+
+    /*
+     * Server
+     */
+    DealDamage(origin: vec2, damage: number, damageZone: rect, pushbackForce?: number): void;
+    DumpCreationInfo(): object;
+    GetLayerInde(): number;
+    GetOwner(): object;
     GetProperty<Name extends Properties["Name"]>(name: Name): NonNullable<DiscriminateUnionByType<DiscriminateUnionByName<Name, Properties>["Type"], Property<string>>["Default"]>;
+    SetParent(parent: object): void;
+
+    /**
+     * Client
+     */
+    AddSprite(parameters: object): object;
+    AddModel(parameters: object): void;
+    DealDamage(origin: vec2, damage: number, damageZone: rect, pushbackForce?: number): void;
+    GetLayerInde(): number;
+    GetProperty<Name extends Properties["Name"]>(name: Name): NonNullable<DiscriminateUnionByType<DiscriminateUnionByName<Name, Properties>["Type"], Property<string>>["Default"]>;
+    PlaySound(path: string, isAttachedToEntity: boolean, isLooping: boolean, isSpatialized: boolean): void;
 
 
     //SetProperty<Name extends Properties["Name"]>(name: Name, value: DiscriminateUnionByType<DiscriminateUnionByName<Name, Properties>["Type"], Property<string>>["Default"]): void;
