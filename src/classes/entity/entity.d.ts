@@ -1,15 +1,32 @@
 
+declare type Entity<Properties extends Property<string> = any, Structure = unknown> = Element<Properties, Structure> & {
 
-
-type DiscriminateUnionByName<Name extends string, Properties extends Property<string>> = Properties extends { Name: Name } & infer U ? U : never ;
-
-declare interface Entity<Properties extends Property<string> = any> extends Element {
-    GetProperty<Name extends Properties["Name"]>(name: Name): DiscriminateUnionByName<Name, Properties>["Default"];
-    SetProperty<Name extends Properties["Name"]>(name: Name, value: DiscriminateUnionByName<Name, Properties>["Default"]): void;
 }
 
-interface ScriptedEntityParams<Name extends string> {
-    IsNetworked: boolean;
-    MaxHealth: number;
-    Properties: Array<Property<Name>>;
+declare type EntityTemplate<EntityT extends Entity> = ElementTemplate<EntityT> & {
+    Instance(element: Element): element is EntityT;
+
+    /*
+        Sync
+    */
+
+    /**
+     * Register a callback for the `InputUpdate` event
+     * @param callback callback to call
+     */
+    On(event: "InputUpdate", callback: EntityTemplate.InputUpdateCallback<EntityT>): void;
+
+    /*
+        Async
+    */
+
+    /**
+     * Register an callback for the `InputUpdate` event
+     * @param callback callback to call
+     */
+    OnAsync(event: "InputUpdate", callback: EntityTemplate.InputUpdateCallback<EntityT>): void;
+}
+
+declare namespace EntityTemplate {
+    type InputUpdateCallback<EntityT extends Entity> = (self: EntityT) => void;
 }

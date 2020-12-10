@@ -115,6 +115,31 @@ declare global {
      */
     function RegisterClientScript(filepath?: string): void;
 
+    /**
+     * Create a new Entity template
+     * @param params properties of the template
+     */
+    function ScriptedEntity<
+        Names extends string,
+        S extends object,
+        T extends ScriptedEntityParams<Names, S>,
+        Properties extends Property<Names> = T["Properties"][number],
+        Structure = T["TsStructure"] extends object ? T["TsStructure"] : any
+    >(params: T): EntityTemplate<Entity<Properties, Structure>>;
 
+    interface ScriptedEntityParams<Name extends string = string, Structure extends object = any> {
+        /**
+         * Dummy parameter that allow to type properties on self in callbacks, if not used you can
+         * Use any name but the type will always be any, if you want to allow any properties while typing some,
+         * add a `[key: sting]: any;` declaration to your type
+         */
+        TsStructure?: Structure,
+        IsNetworked: boolean;
+        MaxHealth: number;
+        /**
+         * List of the properties of the template
+         */
+        Properties: Array<Property<Name>>;
+    }
 
 }

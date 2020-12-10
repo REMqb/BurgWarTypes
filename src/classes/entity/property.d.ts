@@ -27,58 +27,64 @@ declare enum PropertyType {
  */
 type TypedPropperty = {
     Type: PropertyType.Boolean,
-    Default: boolean
+    Default?: boolean
 } | {
     Type: PropertyType.Entity,
-    Default: Entity
+    Default?: Entity
 } | {
     Type: PropertyType.Float,
-    Default: number
+    Default?: number
 } | {
     Type: PropertyType.FloatPosition,
-    Default: vec2
+    Default?: vec2
 } | {
     Type: PropertyType.FloatPosition3D,
-    Default: vec3
+    Default?: vec3
 } | {
     Type: PropertyType.FloatRect,
-    Default: rect
+    Default?: rect
 } | {
     Type: PropertyType.FloatSize,
-    Default: vec2
+    Default?: vec2
 } | {
     Type: PropertyType.FloatSize3D,
-    Default: vec3
+    Default?: vec3
 } | {
     Type: PropertyType.Integer,
-    Default: number
+    Default?: number
 } | {
     Type: PropertyType.IntegerPosition,
-    Default: vec2
+    Default?: vec2
 } | {
     Type: PropertyType.IntegerPosition3D,
-    Default: vec3
+    Default?: vec3
 } | {
     Type: PropertyType.IntegerRect,
-    Default: rect
+    Default?: rect
 } | {
     Type: PropertyType.IntegerSize,
-    Default: vec2
+    Default?: vec2
 } | {
     Type: PropertyType.IntegerSize3D,
-    Default: vec3
+    Default?: vec3
 } | {
     Type: PropertyType.Layer,
-    Default: number
+    Default?: number
 } | {
     Type: PropertyType.String,
-    Default: string
+    Default?: string
 } | {
     Type: PropertyType.Texture,
-    Default: Texture
+    Default?: Texture
 };
 
+/**
+ * Complete property type
+ */
 type Property<Name extends string> = {
     Name: Name;
     Shared: boolean;
 } & TypedPropperty;
+
+type DiscriminateUnionByName<Name extends string, Properties extends Property<string>> = Properties extends { Name: Name } & infer U ? U : never;
+type DiscriminateUnionByType<Type extends PropertyType, Properties extends Property<string>> = Properties extends { Type: Type } & infer U ? U : never;
