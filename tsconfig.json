@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "outDir": "dist/",
+        "module": "commonjs",
+        "lib": ["esnext"],
+        "strict": true,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "rootDir": "src",
+        "types": ["lua-types/5.3"],
+        "typeRoots": ["src"],
+        "inlineSources": true,
+        "allowJs": true,
+        "noImplicitAny": true
+    },
+    "tstl": {
+        "luaTarget": "5.3",
+        "luaLibImport": "require",
+        "noImplicitSelf": true
+    }
+}
