@@ -4,12 +4,8 @@ declare type vec3 = number & {
     z: number;
 
     Distance(other: vec3): number;
-
-    /**
-     * @tupleReturn
-     */
     Length(): number;
-    Normalize(): [self: vec3, length: number];
+    Normalize(): MultiReturn<[self: vec3, length: number]>;
     SquaredLength(): number;
     SquaredDistance(other: vec3): number;
 }

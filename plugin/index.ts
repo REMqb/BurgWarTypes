@@ -1,13 +1,12 @@
 import * as ts from "typescript";
 import * as tstl from "typescript-to-lua";
-import { isStringLiteral } from "typescript-to-lua";
 
 function checkPropertyCallName(expression: tstl.TableFieldExpression, property: string, functionName: string) {
     if(!expression.key) {
         return true;
     }
 
-    if(!isStringLiteral(expression.key)) {
+    if(!tstl.isStringLiteral(expression.key)) {
         return true;
     }
 

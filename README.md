@@ -27,7 +27,11 @@ See [the tstl documentation](https://typescripttolua.github.io/docs/configuratio
         "sourceMap": true,
         "moduleResolution": "node",
         "rootDir": "./src",
-        "types": ["lua-types/5.3", "burgwarts"],
+        "types": [
+            "lua-types/5.3",
+            "@remqb/burgwarts",
+            "typescript-to-lua/language-extensions"
+        ],
         "inlineSources": true,
         "allowJs": true,
         "noImplicitAny": true
@@ -37,7 +41,7 @@ See [the tstl documentation](https://typescripttolua.github.io/docs/configuratio
         "luaLibImport": "require",
         "noImplicitSelf": true,
         "luaPlugins": [{
-            "name": "./node_modules/burgwarts/plugin/burgwarts.ts"
+            "name": "./node_modules/@remqb/burgwarts/plugin"
         }]
     }
 }
@@ -49,6 +53,7 @@ See [the tstl documentation](https://typescripttolua.github.io/docs/configuratio
 All types should be available when adding `burgwarts` to types array in tsconfig.json
 
 You can compile your scripts with this command:
+
 ```bash
 npx tstl
 ```

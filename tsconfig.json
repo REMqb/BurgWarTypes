@@ -1,16 +1,13 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "outDir": "dist/",
-        "module": "commonjs",
         "lib": ["esnext"],
         "strict": true,
-        "sourceMap": true,
-        "moduleResolution": "node",
         "rootDir": "./",
-        "types": ["lua-types/5.3"],
+        "types": [
+            "lua-types/5.3",
+            "typescript-to-lua/language-extensions"
+        ],
         "typeRoots": ["src"],
-        "inlineSources": true,
         "allowJs": true,
         "noImplicitAny": true
     },

@@ -1,9 +1,13 @@
 {
-    "name": "burgwarts",
-    "version": "1.0.0",
+    "name": "@remqb/burgwarts",
+    "version": "1.0.5",
     "description": "TypeScript definitions for BurgWar scripts and tstl https://github.com/DigitalPulseSoftware/BurgWar",
+    "repository": {
+        "url": "https://github.com/REMqb/BurgWarTypes"
+    },
     "types": "src/index.d.ts",
     "scripts": {},
+    "type": "module",
     "keywords": [
         "burgwar",
         "tstl",
@@ -15,8 +19,12 @@
     "dependencies": {
         "lua-types": "^2.8.0"
     },
+    "peerDependencies": {
+        "typescript": "^4.1.2",
+        "typescript-to-lua": "^0.37.0"
+    },
     "devDependencies": {
         "typescript": "^4.1.2",
-        "typescript-to-lua": "^0.36.0"
+        "typescript-to-lua": "^0.37.0"
     }
 }
