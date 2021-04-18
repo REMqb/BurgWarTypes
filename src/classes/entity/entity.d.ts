@@ -13,7 +13,10 @@ declare type Entity<Properties extends Property<string> = any, Structure = unkno
     GetMomentOfInertia(): unknown | undefined;
     GetPlayerMovementController(): PlayerMovementController;
     GetPlayerMovementSpeed(): vec2;
-    GetPlayerJumpHeight(): MultiReturn<[jumpHeight: number, jumpBoostHeigh: number]>;
+    /**
+     * @tupleReturn
+     */
+    GetPlayerJumpHeight(): [jumpHeight: number, jumpBoostHeigh: number];
     GetUpVector(): vec2;
     GetVelocity(): vec2;
     Heal(value: number, healerEntity?: Entity): void;

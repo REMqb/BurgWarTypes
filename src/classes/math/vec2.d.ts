@@ -5,7 +5,10 @@ declare type vec2 = number & {
     Distance(other: vec2): number;
     DistanceTest(other: vec2, distance: number): boolean;
 
-    GetNormalized(): MultiReturn<[normal: vec2, length: number]>;
+    /**
+     * @tupleReturn
+     */
+    GetNormalized(): [normal: vec2, length: number];
     Length(): number;
     Normalize(): number;
     SquaredLength(): number;

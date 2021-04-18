@@ -13,6 +13,7 @@ npm install -D typescript-to-lua ts-node @remqb/burgwarts
 ## Example tsconfig.json
 
 The plugin is required if you want to type entity properties and inheritance.
+ts-node.skipIgnore is required for the plugin.
 
 See [the tstl documentation](https://typescripttolua.github.io/docs/configuration) for additional options.
 
@@ -36,12 +37,15 @@ See [the tstl documentation](https://typescripttolua.github.io/docs/configuratio
         "allowJs": true,
         "noImplicitAny": true
     },
+    "ts-node": {
+        "skipIgnore": true
+    },
     "tstl": {
         "luaTarget": "5.3",
         "luaLibImport": "require",
         "noImplicitSelf": true,
         "luaPlugins": [{
-            "name": "./node_modules/@remqb/burgwarts/plugin"
+            "name": "@remqb/burgwarts/plugin"
         }]
     }
 }
