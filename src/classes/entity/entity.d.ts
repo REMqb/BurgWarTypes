@@ -85,5 +85,5 @@ declare type EntityTemplate<EntityT extends Entity> = ElementTemplate<EntityT> &
 }
 
 declare namespace EntityTemplate {
-    type InputUpdateCallback<EntityT extends Entity> = (self: EntityT) => void;
+    type InputUpdateCallback<EntityT extends Entity> = (this: void, self: EntityT) => void;
 }

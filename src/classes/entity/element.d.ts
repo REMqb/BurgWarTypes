@@ -190,7 +190,7 @@ declare namespace ElementTemplate {
      * ```
      * @noSelf
      */
-    type CollisionStartCallback<ElementT extends Element> = (self: ElementT, other: Entity) => boolean;
+    type CollisionStartCallback<ElementT extends Element> = (this: void, self: ElementT, other: Entity) => boolean;
 
     /**
      * Called whenever this element is about to die (after its health fell to zero).
@@ -211,7 +211,7 @@ declare namespace ElementTemplate {
      *                 });
      * ```
      */
-    type DeathCallback<ElementT extends Element> = (self: ElementT, attacker?: Entity) => void;
+    type DeathCallback<ElementT extends Element> = (this: void, self: ElementT, attacker?: Entity) => void;
 
     /**
      * Called whenever this element is about to get removed from the match.
@@ -227,7 +227,7 @@ declare namespace ElementTemplate {
      *              });
      * ```
      */
-    type DestroyedCallback<ElementT extends Element> = (self: ElementT) => void;
+    type DestroyedCallback<ElementT extends Element> = (this: void, self: ElementT) => void;
 
     /**
      * Called whenever this element died (after its health fell to zero).
@@ -248,7 +248,7 @@ declare namespace ElementTemplate {
      *                 });
      * ```
      */
-    type DiedCallback<ElementT extends Element> = (self: ElementT, attacker?: Entity) => void;
+    type DiedCallback<ElementT extends Element> = (this: void, self: ElementT, attacker?: Entity) => void;
 
     /**
      * Called whenever this element health changes (whether it be damage or health).
@@ -269,7 +269,7 @@ declare namespace ElementTemplate {
      *               });
      * ```
      */
-    type HealthUpdateCallback<ElementT extends Element> = (self: ElementT, newHealth: number, dealer?: Entity) => void;
+    type HealthUpdateCallback<ElementT extends Element> = (this: void, self: ElementT, newHealth: number, dealer?: Entity) => void;
 
     /**
      * Called right after the entity creation, this event is used to initialize the element and its variables.
@@ -285,15 +285,15 @@ declare namespace ElementTemplate {
      *              });
      * ```
      */
-    type InitCallback<ElementT extends Element> = (self: ElementT) => void;
+    type InitCallback<ElementT extends Element> = (this: void, self: ElementT) => void;
 
-    type ScaleUpdateCallback<ElementT extends Element> = (self: ElementT) => void;
+    type ScaleUpdateCallback<ElementT extends Element> = (this: void, self: ElementT) => void;
 
-    type TickCallback<ElementT extends Element> = (self: ElementT) => void;
+    type TickCallback<ElementT extends Element> = (this: void, self: ElementT) => void;
 
-    type FrameCallback<ElementT extends Element> = (self: ElementT) => void;
+    type FrameCallback<ElementT extends Element> = (this: void, self: ElementT) => void;
 
-    type PostFrameCallback<ElementT extends Element> = (self: ElementT) => void;
+    type PostFrameCallback<ElementT extends Element> = (this: void, self: ElementT) => void;
 
 
 

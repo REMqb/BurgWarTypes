@@ -73,8 +73,8 @@ declare type WeaponTemplate<WeaponT extends Weapon> = ElementTemplate<WeaponT> &
 }
 
 declare namespace WeaponTemplate {
-    type AttackCallback<WeaponT extends Weapon> = (self: WeaponT) => void;
-    type SwitchOnCallback<WeaponT extends Weapon> = (self: WeaponT) => void;
-    type SwitchOffCallback<WeaponT extends Weapon> = (self: WeaponT) => void;
-    type AttackFinishCallback<WeaponT extends Weapon> = (self: WeaponT) => void;
+    type AttackCallback<WeaponT extends Weapon> = (this: void, self: WeaponT) => void;
+    type SwitchOnCallback<WeaponT extends Weapon> = (this: void, self: WeaponT) => void;
+    type SwitchOffCallback<WeaponT extends Weapon> = (this: void, self: WeaponT) => void;
+    type AttackFinishCallback<WeaponT extends Weapon> = (this: void, self: WeaponT) => void;
 }
