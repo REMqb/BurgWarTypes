@@ -84,7 +84,7 @@ declare interface ElementTemplate<ElementT extends Element> {
      * Register a callback for the `Init` event
      * @param callback callback to call
      */
-    On(event: "Init", callback: ElementTemplate.CollisionStartCallback<ElementT>): void;
+    On(event: "Init", callback: ElementTemplate.InitCallback<ElementT>): void;
     /**
      * Register a callback for the `ScaleUpdate` event
      * @param callback callback to call
