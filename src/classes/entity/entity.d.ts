@@ -61,8 +61,9 @@ declare type Entity<Properties extends Property<string> = any, Structure = unkno
 }
 
 declare type EntityTemplate<EntityT extends Entity> = ElementTemplate<EntityT> & {
-    Instance(element: Element): element is EntityT;
+    entity: EntityT;
 
+    Instance(element: Element): element is EntityT;
     /*
         Sync
     */
@@ -87,3 +88,5 @@ declare type EntityTemplate<EntityT extends Entity> = ElementTemplate<EntityT> &
 declare namespace EntityTemplate {
     type InputUpdateCallback<EntityT extends Entity> = (this: void, self: EntityT) => void;
 }
+
+declare type EntityFromTemplate<Template extends EntityTemplate<any>> = Template extends EntityTemplate<infer U> ? U : never;

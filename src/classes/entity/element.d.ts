@@ -26,7 +26,7 @@ declare type Element<Properties extends Property<string> = any, Structure = unkn
      */
     DealDamage(origin: vec2, damage: number, damageZone: rect, pushbackForce?: number): void;
     DumpCreationInfo(): object;
-    GetLayerInde(): number;
+    GetLayerIndex(): number;
     GetOwner(): object;
     GetProperty<Name extends Properties["Name"]>(name: Name): NonNullable<DiscriminateUnionByType<DiscriminateUnionByName<Name, Properties>["Type"], Property<string>>["Default"]>;
     SetParent(parent: object): void;
@@ -37,7 +37,7 @@ declare type Element<Properties extends Property<string> = any, Structure = unkn
     AddSprite(parameters: object): object;
     AddModel(parameters: object): void;
     DealDamage(origin: vec2, damage: number, damageZone: rect, pushbackForce?: number): void;
-    GetLayerInde(): number;
+    GetLayerIndex(): number;
     GetProperty<Name extends Properties["Name"]>(name: Name): NonNullable<DiscriminateUnionByType<DiscriminateUnionByName<Name, Properties>["Type"], Property<string>>["Default"]>;
     PlaySound(path: string, isAttachedToEntity: boolean, isLooping: boolean, isSpatialized: boolean): void;
 
