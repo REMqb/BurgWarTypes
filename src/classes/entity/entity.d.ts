@@ -1,3 +1,4 @@
+declare type Colliders = rect | circle | segment;
 
 declare type Entity<Properties extends Property<string> = any, Structure = unknown> = Element<Properties, Structure> & {
 
@@ -29,7 +30,7 @@ declare type Entity<Properties extends Property<string> = any, Structure = unkno
     OverrideMovementController(fn: unknown): void;
     Remove(): void;
     SetAngularVelocity(velocity: number): void;
-    SetColliders(colliders: unknown[]): void;
+    SetColliders(colliders: Colliders | Colliders[]): void;
     SetDirection(up: vec2): void;
     SetMass(mass: number): void;
     SetMomentOfInertia(momentum: number): void;

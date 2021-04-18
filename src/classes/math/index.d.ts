@@ -1,5 +1,6 @@
+import './circle';
 import './random-engine';
 import './rect';
-import './circle';
+import './segment';
 import './vec2';
 import './vec3';
