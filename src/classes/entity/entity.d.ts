@@ -61,8 +61,6 @@ declare type Entity<Properties extends Property<string> = any, Structure = unkno
 }
 
 declare type EntityTemplate<EntityT extends Entity> = ElementTemplate<EntityT> & {
-    entity: EntityT;
-
     Instance(element: Element): element is EntityT;
     /*
         Sync

@@ -8,4 +8,7 @@ declare class circle {
     constructor(center: vec2, radius: number);
 }
 
+/**
+ * @noSelf
+ */
 declare function Circle(center: vec2, radius: number): circle;

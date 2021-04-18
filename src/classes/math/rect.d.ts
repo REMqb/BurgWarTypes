@@ -16,4 +16,7 @@ declare class rect {
     Intersect(other: rect): boolean;
 }
 
+/**
+ * @noSelf
+ */
 declare function Rect(mins: vec2, maxs: vec2): rect;
